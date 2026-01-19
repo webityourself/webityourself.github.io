@@ -66,13 +66,22 @@
     }
 
     .link {
-      font-size: 1.1rem;
-      font-weight: 600;
+      display: inline-block;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      color: #4da6ff;
+      text-decoration: none;
     }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
     .stars {
       display: flex;
       gap: 4px;
       margin: 0.6rem 0;
+      cursor: pointer;
     }
 
     .stars img {
@@ -82,13 +91,14 @@
 
     .description {
       font-size: 0.95rem;
-      color: #cfcfe8;
-    }
-     .subdescription {
-      font-size: 0.8rem;
       color: #ffffff;
     }
 
+    .subdescription {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 0.25rem;
+    }
   </style>
 </head>
 
@@ -108,10 +118,6 @@
   </div>
 
   <script>
-    /* =========================
-       DEFINE YOUR APPS HERE
-       ========================= */
-
     const apps = [
       {
         name: "Raveoir Mail",
@@ -119,7 +125,7 @@
         logo: "docs/apps/raven-logo.png",
         stars: 5,
         description: "Fast as a pigeon, reliable as a pager.",
-        subdescription: "It is a realy efficient EMAIL application that was made in two days."
+        subdescription: "It is a really efficient EMAIL application that was made in two days."
       },
       {
         name: "Pagion Messenger",
@@ -127,13 +133,9 @@
         logo: "docs/apps/pagion-logo.png",
         stars: 4,
         description: "Fast as a raven.",
-        subdescription: "One star off cause it is a bit hard to get others UID's."
+        subdescription: "One star off because it is a bit hard to get others' UID's."
       }
     ];
-
-    /* =========================
-       RENDER APPS
-       ========================= */
 
     const appsContainer = document.getElementById("apps");
 
@@ -141,6 +143,7 @@
       const card = document.createElement("div");
       card.className = "app";
 
+      // Stars HTML
       let starsHtml = "";
       for (let i = 0; i < app.stars; i++) {
         starsHtml += `<img src="docs/star.png" alt="star" />`;
@@ -151,12 +154,17 @@
           <img src="${app.logo}" alt="${app.name} logo" />
           <div class="app-name">${app.name}</div>
         </div>
-        
-        <a class="link" href="${app.link}" target="_blank" rel="noopener">
-          ${link}
+
+        <!-- Clickable stars -->
+        <a class="stars" href="${app.link}" target="_blank" rel="noopener">
+          ${starsHtml}
         </a>
+
         <div class="description">${app.description}</div>
         <div class="subdescription">${app.subdescription}</div>
+
+        <!-- Optional text link -->
+        <a class="link" href="${app.link}" target="_blank" rel="noopener">Open App</a>
       `;
 
       appsContainer.appendChild(card);
